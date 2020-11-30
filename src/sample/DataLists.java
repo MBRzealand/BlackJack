@@ -1,8 +1,15 @@
 package sample;
 
-import java.util.ArrayList;
+import javafx.scene.image.Image;
 
-public class DataLists {
+import java.util.ArrayList;
+import java.util.Random;
+
+public class DataLists{
+
+    Random rand = new Random();
+    String imageURL;
+    Image image;
 
     ArrayList<String> hearts = new ArrayList<>();
     ArrayList<String> clubs = new ArrayList<>();
@@ -12,5 +19,6 @@ public class DataLists {
     ArrayList<ArrayList<String>> deck = new ArrayList<>();
 
     int counter = 0;
+    int AIcounter = 0;
 
 }
