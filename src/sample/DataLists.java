@@ -18,6 +18,13 @@ public class DataLists{
 
     ArrayList<ArrayList<String>> deck = new ArrayList<>();
 
+    ArrayList<String> playerCards = new ArrayList<>();
+    ArrayList<String> computerCards = new ArrayList<>();
+
+    ArrayList<Integer> intPlayerCards = new ArrayList<>();
+    ArrayList<Integer> intComputerCards = new ArrayList<>();
+
+
     int counter = 0;
     int AIcounter = 0;
 
