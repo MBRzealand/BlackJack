@@ -7,4 +7,4 @@ Simply trying to make a basic version of blackjack card game where you can play 
 My knowledge of blackjack is somewhat limited, so expect the computer to do some 900IQ plays
 
 
-![alt text](https://github.com/MBRzealand/BlackJack/blob/master/Table.png?raw=true)
+![alt text](https://i.imgur.com/aTK9R8v.png)
