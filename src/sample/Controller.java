@@ -10,6 +10,8 @@ import javafx.scene.text.Text;
 
 public class Controller extends DataLists{
 
+    //-----------------------------------------------{ text fields }----------------------------------------------------
+
     @FXML
     private TextArea bugfixing;
 
@@ -19,15 +21,7 @@ public class Controller extends DataLists{
     @FXML
     private Text compBust;
 
-
-    @FXML
-    private Button playerBustButton;
-
-    @FXML
-    private Button compBustButton;
-
-    @FXML
-    private Button hitButton;
+    //----------------------------------------------{ card displays }---------------------------------------------------
 
     @FXML
     private ImageView Card1;
@@ -44,7 +38,6 @@ public class Controller extends DataLists{
     @FXML
     private ImageView Card5;
 
-
     @FXML
     private ImageView Computer5;
 
@@ -60,15 +53,40 @@ public class Controller extends DataLists{
     @FXML
     private ImageView Computer1;
 
+    //----------------------------------------------------{ Buttons }---------------------------------------------------
 
+    @FXML
+    private Button hitButton;
+
+    @FXML
+    private Button compHitButton;
+
+    @FXML
+    private Button compStandButton;
 
     @FXML
     private Button newGameButton;
 
 
+    //---------------------------------------------- { Minor Functions }------------------------------------------------
 
-    @FXML
-    void initialize(ActionEvent event) {
+    void refillDeck(){
+
+        for (int i = 1; i < 14; i++) {
+            hearts.add(i + "_H");
+            clubs.add(i + "_C");
+            spades.add(i + "_S");
+            diamonds.add(i + "_D");
+        }
+
+        deck.add(hearts);
+        deck.add(clubs);
+        deck.add(spades);
+        deck.add(diamonds);
+
+    }
+
+    void clearStoredData(){
 
         bugfixing.clear();
 
@@ -85,19 +103,6 @@ public class Controller extends DataLists{
 
         counter = 0;
         AIcounter = 0;
-
-        for (int i = 1; i < 14; i++) {
-            hearts.add(i + "_H");
-            clubs.add(i + "_C");
-            spades.add(i + "_S");
-            diamonds.add(i + "_D");
-        }
-
-        deck.add(hearts);
-        deck.add(clubs);
-        deck.add(spades);
-        deck.add(diamonds);
-
 
         Card1.setImage(null);
         Card2.setImage(null);
@@ -116,21 +121,19 @@ public class Controller extends DataLists{
 
     }
 
+    void pickCard(){
 
-    @FXML
-    void drawCard(ActionEvent event) {
+        suite = rand.nextInt((deck.size() - 1) + 1);
+        value = rand.nextInt((deck.get(suite).size() - 1) + 1);
 
-        image = null;
+    }
 
-        int suite = rand.nextInt((deck.size() - 1) + 1);
-        int value = rand.nextInt((deck.get(suite).size() - 1) + 1);
-        counter += 1;
+    void playerTakesCardFromDeck(){
 
-        String pickedCard = deck.get(suite).get(value);
+        pickCard();
+
+        pickedCard = deck.get(suite).get(value);
         playerCards.add(pickedCard);
-
-        imageURL = "file:C:\\Users\\mikma\\IdeaProjects\\BlackJack\\src\\PNG\\" + pickedCard + ".png";
-        image = new Image(imageURL);
 
         deck.get(suite).remove(value);
 
@@ -140,6 +143,16 @@ public class Controller extends DataLists{
 
         }
 
+    }
+
+    void displayPlayerCard(){
+
+        counter += 1;
+
+        image = null;
+
+        imageURL = "file:C:\\Users\\mikma\\IdeaProjects\\BlackJack\\src\\PNG\\" + pickedCard + ".png";
+        image = new Image(imageURL);
 
         switch (counter) {
             case 1 -> {
@@ -159,26 +172,14 @@ public class Controller extends DataLists{
             }
         }
 
-        checkPlayerScore();
-        computerTurn();
-        checkComputerScore();
-
     }
 
+    void computerTakesCardFromDeck(){
 
-    void computerTurn(){
+        pickCard();
 
-        image = null;
-
-        int suite = rand.nextInt((deck.size() - 1) + 1);
-        int value = rand.nextInt((deck.get(suite).size() - 1) + 1);
-        AIcounter += 1;
-
-        String pickedCard = deck.get(suite).get(value);
+        pickedCard = deck.get(suite).get(value);
         computerCards.add(pickedCard);
-
-        imageURL = "file:C:\\Users\\mikma\\IdeaProjects\\BlackJack\\src\\PNG\\" + pickedCard + ".png";
-        image = new Image(imageURL);
 
         deck.get(suite).remove(value);
 
@@ -188,7 +189,18 @@ public class Controller extends DataLists{
 
         }
 
-        switch (counter) {
+    }
+
+    void displayComputerCard(){
+
+        AIcounter += 1;
+
+        image = null;
+
+        imageURL = "file:C:\\Users\\mikma\\IdeaProjects\\BlackJack\\src\\PNG\\" + pickedCard + ".png";
+        image = new Image(imageURL);
+
+        switch (AIcounter) {
             case 1 -> {
                 Computer1.setImage(image);
             }
@@ -207,6 +219,38 @@ public class Controller extends DataLists{
         }
 
     }
+
+    //-----------------------------------------------{ In-app functions }-----------------------------------------------
+
+
+    @FXML
+    void newGame(ActionEvent event) {
+
+        clearStoredData();
+        refillDeck();
+
+    }
+
+    @FXML
+    void playerHit(ActionEvent event) {
+
+        playerTakesCardFromDeck();
+
+        displayPlayerCard();
+
+    }
+
+    @FXML
+    void computerHit(ActionEvent event) {
+
+        computerTakesCardFromDeck();
+        displayComputerCard();
+
+    }
+
+
+
+
 
     void checkPlayerScore(){
 
@@ -270,14 +314,11 @@ public class Controller extends DataLists{
 
 
 
-    @FXML
-    void compBust(ActionEvent event) {
-        compBust.setText("Computer Bust!");
-    }
 
     @FXML
-    void playerBust(ActionEvent event) {
-        playerBust.setText("Player Bust!");
+    void comptStand(ActionEvent event) {
+
     }
+
 
 }

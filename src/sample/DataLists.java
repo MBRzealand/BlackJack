@@ -8,7 +8,15 @@ import java.util.Random;
 public class DataLists{
 
     Random rand = new Random();
-    String imageURL;
+
+    String imageURL = "fuck";
+    String pickedCard = "fuck";
+
+    int counter = 0;
+    int AIcounter = 0;
+    int suite = 0;
+    int value = 0;
+
     Image image;
 
     ArrayList<String> hearts = new ArrayList<>();
@@ -25,7 +33,6 @@ public class DataLists{
     ArrayList<Integer> intComputerCards = new ArrayList<>();
 
 
-    int counter = 0;
-    int AIcounter = 0;
+
 
 }
