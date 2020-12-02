@@ -14,15 +14,14 @@ public class Main extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Bootleg BlackJack");
-        primaryStage.setScene(new Scene(root, 1000, 1000));
+        primaryStage.setScene(new Scene(root, 1000, 600));
         primaryStage.show();
-    }
 
+    }
 
     public static void main(String[] args) {
         launch(args);
     }
-
 
 
 }

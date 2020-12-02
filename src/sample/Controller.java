@@ -12,8 +12,8 @@ public class Controller extends DataLists{
 
     //-----------------------------------------------{ text fields }----------------------------------------------------
 
-    @FXML
-    private TextArea bugfixing;
+//    @FXML
+//    private TextArea bugfixing;
 
     @FXML
     private Text playerBust;
@@ -62,12 +62,6 @@ public class Controller extends DataLists{
     private Button playerStandButton;
 
     @FXML
-    private Button computerHitButton;
-
-    @FXML
-    private Button computerStandButton;
-
-    @FXML
     private Button newGameButton;
 
     //--------------------------------------------{ Framework Functions }-----------------------------------------------
@@ -90,7 +84,7 @@ public class Controller extends DataLists{
 
     void clearStoredData(){
 
-        bugfixing.clear();
+//        bugfixing.clear();
 
         hearts.clear();
         clubs.clear();
@@ -221,8 +215,6 @@ public class Controller extends DataLists{
 
         }
 
-        bugfixing.appendText(playerScore + "\n");
-
         checkForBust();
 
     }
@@ -298,6 +290,19 @@ public class Controller extends DataLists{
 
     }
 
+    void think(){
+
+        checkPlayerScore();
+        checkComputerScore();
+
+        if ((playerScore > computerScore) && (playerScore<=21)) {
+            computerHit();
+        } else {
+            computerStand();
+        }
+
+    }
+
     //-----------------------------------------------{ In-app functions }-----------------------------------------------
 
 
@@ -320,6 +325,8 @@ public class Controller extends DataLists{
 
         checkPlayerScore();
 
+        think();
+
     }
 
     @FXML
@@ -328,12 +335,11 @@ public class Controller extends DataLists{
         checkPlayerScore();
         checkComputerScore();
 
+        think();
+
     }
 
-
-
-    @FXML
-    void computerHit(ActionEvent event) {
+    void computerHit() {
 
         computerTakesCardFromDeck();
 
@@ -343,13 +349,16 @@ public class Controller extends DataLists{
 
     }
 
-    @FXML
-    void comptStand(ActionEvent event) {
+    void computerStand() {
 
         checkComputerScore();
         checkPlayerScore();
 
     }
+
+
+
+
 
 
 

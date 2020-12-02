@@ -28,8 +28,6 @@ public class DataLists{
 
 
 
-
-
     ArrayList<String> hearts = new ArrayList<>();
     ArrayList<String> clubs = new ArrayList<>();
     ArrayList<String> spades = new ArrayList<>();
