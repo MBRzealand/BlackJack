@@ -29,43 +29,43 @@
                      <children>
                         <ImageView fitHeight="725.0" fitWidth="1015.0" layoutX="13.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../PNG/172-1722358_transparent-card-dealer-clipart-blackjack-table-png.png" />
+                              <Image url="@../PNG/Table.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="Card1" fitHeight="78.0" fitWidth="49.0" layoutX="420.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="Card2" fitHeight="78.0" fitWidth="49.0" layoutX="460.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="Card3" fitHeight="78.0" fitWidth="49.0" layoutX="496.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="Card4" fitHeight="78.0" fitWidth="49.0" layoutX="533.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="Card5" fitHeight="78.0" fitWidth="49.0" layoutX="571.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="Card1" fitHeight="78.0" fitWidth="49.0" layoutX="423.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="Card2" fitHeight="78.0" fitWidth="49.0" layoutX="463.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="Card3" fitHeight="78.0" fitWidth="49.0" layoutX="499.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="Card4" fitHeight="78.0" fitWidth="49.0" layoutX="536.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="Card5" fitHeight="78.0" fitWidth="49.0" layoutX="574.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="79.0" fitWidth="45.0" layoutX="203.0" layoutY="97.0" pickOnBounds="true" rotate="90.0">
                            <image>
                               <Image url="@../PNG/red_back.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="Computer5" fitHeight="78.0" fitWidth="49.0" layoutX="421.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" />
-                        <ImageView fx:id="Computer4" fitHeight="78.0" fitWidth="49.0" layoutX="459.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" />
-                        <ImageView fx:id="Computer3" fitHeight="78.0" fitWidth="49.0" layoutX="496.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" />
-                        <ImageView fx:id="Computer2" fitHeight="78.0" fitWidth="49.0" layoutX="532.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" />
-                        <ImageView fx:id="Computer1" fitHeight="78.0" fitWidth="49.0" layoutX="572.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" />
+                        <ImageView fx:id="Computer5" fitHeight="78.0" fitWidth="49.0" layoutX="416.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" />
+                        <ImageView fx:id="Computer4" fitHeight="78.0" fitWidth="49.0" layoutX="454.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" />
+                        <ImageView fx:id="Computer3" fitHeight="78.0" fitWidth="49.0" layoutX="491.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" />
+                        <ImageView fx:id="Computer2" fitHeight="78.0" fitWidth="49.0" layoutX="527.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" />
+                        <ImageView fx:id="Computer1" fitHeight="78.0" fitWidth="49.0" layoutX="567.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" />
                         <Button layoutX="525.0" layoutY="15.0" mnemonicParsing="false" text="Split" />
                         <Button layoutX="415.0" layoutY="15.0" mnemonicParsing="false" text="Double Down" />
-                        <Button layoutX="348.0" layoutY="15.0" mnemonicParsing="false" text="Stand" />
+                        <Button fx:id="playerStandButton" layoutX="348.0" layoutY="15.0" mnemonicParsing="false" onAction="#playerStand" text="Stand" />
                         <Button fx:id="newGameButton" layoutX="71.0" layoutY="15.0" mnemonicParsing="false" onAction="#newGame" text="New Game" />
                         <Button layoutX="587.0" layoutY="15.0" mnemonicParsing="false" text="Surrender" />
-                        <Button fx:id="hitButton" layoutX="299.0" layoutY="15.0" mnemonicParsing="false" onAction="#playerHit" text="Hit" />
-                        <Text fx:id="playerBust" fill="RED" layoutX="425.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="199.13671875">
+                        <Button fx:id="playerHitButton" layoutX="299.0" layoutY="15.0" mnemonicParsing="false" onAction="#playerHit" text="Hit" />
+                        <Text fx:id="playerBust" fill="RED" layoutX="428.0" layoutY="435.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="199.13671875">
                            <font>
                               <Font size="39.0" />
                            </font>
                         </Text>
-                        <Text fx:id="compBust" fill="RED" layoutX="391.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="268.13671875">
+                        <Text fx:id="compBust" fill="RED" layoutX="386.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="268.13671875">
                            <font>
                               <Font size="39.0" />
                            </font>
                         </Text>
                         <TextArea fx:id="bugfixing" layoutX="26.0" layoutY="536.0" prefHeight="302.0" prefWidth="990.0" />
-                        <Button fx:id="compHitButton" layoutX="763.0" layoutY="15.0" mnemonicParsing="false" onAction="#computerHit" text="compHit" />
-                        <Button fx:id="compStandButton" layoutX="846.0" layoutY="15.0" mnemonicParsing="false" onAction="#comptStand" text="compStand" />
+                        <Button fx:id="computerHitButton" layoutX="763.0" layoutY="15.0" mnemonicParsing="false" onAction="#computerHit" text="compHit" />
+                        <Button fx:id="computerStandButton" layoutX="846.0" layoutY="15.0" mnemonicParsing="false" onAction="#comptStand" text="compStand" />
                      </children>
                   </AnchorPane>
             </content>

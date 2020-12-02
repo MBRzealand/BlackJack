@@ -56,19 +56,21 @@ public class Controller extends DataLists{
     //----------------------------------------------------{ Buttons }---------------------------------------------------
 
     @FXML
-    private Button hitButton;
+    private Button playerHitButton;
 
     @FXML
-    private Button compHitButton;
+    private Button playerStandButton;
 
     @FXML
-    private Button compStandButton;
+    private Button computerHitButton;
+
+    @FXML
+    private Button computerStandButton;
 
     @FXML
     private Button newGameButton;
 
-
-    //---------------------------------------------- { Minor Functions }------------------------------------------------
+    //--------------------------------------------{ Framework Functions }-----------------------------------------------
 
     void refillDeck(){
 
@@ -104,6 +106,9 @@ public class Controller extends DataLists{
         counter = 0;
         AIcounter = 0;
 
+        playerScore = 0;
+        computerScore = 0;
+
         Card1.setImage(null);
         Card2.setImage(null);
         Card3.setImage(null);
@@ -127,6 +132,29 @@ public class Controller extends DataLists{
         value = rand.nextInt((deck.get(suite).size() - 1) + 1);
 
     }
+
+    void faceCardToTen(){
+
+        if ((cardNumVal > 10)&&(cardNumVal < 14)){
+
+            cardNumVal = 10;
+
+        }
+    }
+
+    void checkForBust(){
+
+        if (computerScore > 21){
+            compBust.setText("Computer Bust!");
+        }
+
+        if (playerScore > 21){
+            playerBust.setText("Player Bust!");
+        }
+
+    }
+
+    //----------------------------------------------{ Player Functions }------------------------------------------------
 
     void playerTakesCardFromDeck(){
 
@@ -174,6 +202,33 @@ public class Controller extends DataLists{
 
     }
 
+    void checkPlayerScore(){
+
+        playerScore = 0;
+        intPlayerCards.clear();
+
+        for (int i = 0; i < playerCards.size(); i++) {
+
+            tmpCard = playerCards.get(i);
+            splitCardName = tmpCard.split("_");
+            cardNumVal = Integer.parseInt(splitCardName[0]);
+
+            faceCardToTen();
+
+            intPlayerCards.add(cardNumVal);
+
+            playerScore += intPlayerCards.get(i);
+
+        }
+
+        bugfixing.appendText(playerScore + "\n");
+
+        checkForBust();
+
+    }
+
+    //-------------------------------------------------{ AI functions }-------------------------------------------------
+
     void computerTakesCardFromDeck(){
 
         pickCard();
@@ -220,6 +275,29 @@ public class Controller extends DataLists{
 
     }
 
+    void checkComputerScore(){
+
+        computerScore = 0;
+        intComputerCards.clear();
+
+        for (int i = 0; i < computerCards.size(); i++) {
+
+            tmpCard = computerCards.get(i);
+            splitCardName = tmpCard.split("_");
+            cardNumVal = Integer.parseInt(splitCardName[0]);
+
+            faceCardToTen();
+
+            intComputerCards.add(cardNumVal);
+
+            computerScore += intComputerCards.get(i);
+
+        }
+
+        checkForBust();
+
+    }
+
     //-----------------------------------------------{ In-app functions }-----------------------------------------------
 
 
@@ -231,6 +309,8 @@ public class Controller extends DataLists{
 
     }
 
+
+
     @FXML
     void playerHit(ActionEvent event) {
 
@@ -238,87 +318,40 @@ public class Controller extends DataLists{
 
         displayPlayerCard();
 
+        checkPlayerScore();
+
     }
+
+    @FXML
+    void playerStand(ActionEvent event) {
+
+        checkPlayerScore();
+        checkComputerScore();
+
+    }
+
+
 
     @FXML
     void computerHit(ActionEvent event) {
 
         computerTakesCardFromDeck();
+
         displayComputerCard();
 
-    }
-
-
-
-
-
-    void checkPlayerScore(){
-
-        int playerScore = 0;
-
-        String tmpCard = playerCards.get(counter-1);
-
-        String[] cardString = tmpCard.split("_");
-
-        int cardVal = Integer.parseInt(cardString[0]);
-
-        if ((cardVal > 10)&&(cardVal < 14)){
-            cardVal = 10;
-        }
-
-        intPlayerCards.add(cardVal);
-
-        bugfixing.appendText(intPlayerCards.toString() + "\n");
-
-
-        for (Integer intPlayerCard : intPlayerCards) {
-            playerScore += intPlayerCard;
-        }
-
-        if (playerScore > 21){
-            playerBust.setText("Player Bust!");
-        }
-
-        bugfixing.appendText(Integer.toString(playerScore));
+        checkComputerScore();
 
     }
-
-    void checkComputerScore(){
-
-        int computerScore = 0;
-
-        String tmpCard = computerCards.get(AIcounter-1);
-
-        String[] cardString = tmpCard.split("_");
-
-        int cardVal = Integer.parseInt(cardString[0]);
-
-        if ((cardVal > 10)&&(cardVal < 14)){
-            cardVal = 10;
-        }
-
-        intComputerCards.add(cardVal);
-
-
-        for (Integer intComputerCard : intComputerCards) {
-            computerScore += intComputerCard;
-        }
-
-        if (computerScore > 21){
-            compBust.setText("Computer Bust!");
-        }
-
-    }
-
-
-
-
-
 
     @FXML
     void comptStand(ActionEvent event) {
 
+        checkComputerScore();
+        checkPlayerScore();
+
     }
+
+
 
 
 }
