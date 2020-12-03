@@ -42,6 +42,4 @@ public class DataLists{
     ArrayList<Integer> intComputerCards = new ArrayList<>();
 
 
-
-
 }

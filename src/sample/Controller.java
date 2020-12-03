@@ -16,6 +16,9 @@ public class Controller extends DataLists{
 //    private TextArea bugfixing;
 
     @FXML
+    private TextArea turnInfo;
+
+    @FXML
     private Text playerBust;
 
     @FXML
@@ -66,6 +69,12 @@ public class Controller extends DataLists{
 
     //--------------------------------------------{ Framework Functions }-----------------------------------------------
 
+    public void initialize(){
+
+        refillDeck();
+
+    }
+
     void refillDeck(){
 
         for (int i = 1; i < 14; i++) {
@@ -85,6 +94,10 @@ public class Controller extends DataLists{
     void clearStoredData(){
 
 //        bugfixing.clear();
+
+        enableButtons();
+
+        turnInfo.setText(null);
 
         hearts.clear();
         clubs.clear();
@@ -140,12 +153,28 @@ public class Controller extends DataLists{
 
         if (computerScore > 21){
             compBust.setText("Computer Bust!");
+            disableButtons();
         }
 
         if (playerScore > 21){
             playerBust.setText("Player Bust!");
+            disableButtons();
         }
 
+    }
+
+    void disableButtons(){
+        playerHitButton.setDisable(true);
+        playerStandButton.setDisable(true);
+        playerHitButton.setVisible(false);
+        playerStandButton.setVisible(false);
+    }
+
+    void enableButtons(){
+        playerHitButton.setDisable(false);
+        playerStandButton.setDisable(false);
+        playerHitButton.setVisible(true);
+        playerStandButton.setVisible(true);
     }
 
     //----------------------------------------------{ Player Functions }------------------------------------------------
@@ -295,10 +324,10 @@ public class Controller extends DataLists{
         checkPlayerScore();
         checkComputerScore();
 
-        if ((playerScore > computerScore) && (playerScore<=21)) {
-            computerHit();
-        } else {
+        if (computerScore >= 17) {
             computerStand();
+        } else if ( ( (playerScore > computerScore) && (playerScore<=21) ) || computerScore < 17 ){
+            computerHit();
         }
 
     }
@@ -313,8 +342,6 @@ public class Controller extends DataLists{
         refillDeck();
 
     }
-
-
 
     @FXML
     void playerHit(ActionEvent event) {
@@ -347,12 +374,16 @@ public class Controller extends DataLists{
 
         checkComputerScore();
 
+        turnInfo.appendText("Computer Hits!\n");
+
     }
 
     void computerStand() {
 
         checkComputerScore();
         checkPlayerScore();
+
+        turnInfo.appendText("Computer Stands!\n");
 
     }
 
