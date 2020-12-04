@@ -37,7 +37,7 @@
                         <ImageView fx:id="Card3" fitHeight="78.0" fitWidth="49.0" layoutX="499.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="Card4" fitHeight="78.0" fitWidth="49.0" layoutX="536.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="Card5" fitHeight="78.0" fitWidth="49.0" layoutX="574.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fitHeight="72.0" fitWidth="45.0" layoutX="822.0" layoutY="114.0" pickOnBounds="true">
+                        <ImageView fitHeight="71.0" fitWidth="45.0" layoutX="845.0" layoutY="101.0" pickOnBounds="true">
                            <image>
                               <Image url="@../PNG/red_back.png" />
                            </image>
@@ -47,20 +47,45 @@
                         <ImageView fx:id="Computer3" fitHeight="78.0" fitWidth="49.0" layoutX="491.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" />
                         <ImageView fx:id="Computer2" fitHeight="78.0" fitWidth="49.0" layoutX="527.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" />
                         <ImageView fx:id="Computer1" fitHeight="78.0" fitWidth="49.0" layoutX="567.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" />
-                        <Button fx:id="playerStandButton" layoutX="636.0" layoutY="99.0" mnemonicParsing="false" onAction="#playerStand" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: RED;" text="Stand" textFill="WHITE" />
+                        <Button fx:id="playerStandButton" layoutX="361.0" layoutY="99.0" mnemonicParsing="false" onAction="#playerStand" prefHeight="70.0" prefWidth="50.0" style="-fx-background-color: RED;" text="Stand" textFill="WHITE" />
                         <Button fx:id="newGameButton" layoutX="471.0" layoutY="24.0" mnemonicParsing="false" onAction="#newGame" prefHeight="25.0" prefWidth="83.0" text="New Game" />
-                        <Button fx:id="playerHitButton" layoutX="724.0" layoutY="99.0" mnemonicParsing="false" onAction="#playerHit" prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: GREEN;" text="Hit" textFill="WHITE" />
-                        <Text fx:id="playerBust" fill="RED" layoutX="428.0" layoutY="435.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="199.13671875">
+                        <Button fx:id="playerHitButton" layoutX="630.0" layoutY="99.0" mnemonicParsing="false" onAction="#playerHit" prefHeight="70.0" prefWidth="50.0" style="-fx-background-color: GREEN;" text="Hit" textFill="WHITE" />
+                        <Text fx:id="playerBust" fill="RED" layoutX="360.0" layoutY="437.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="320.13671875">
                            <font>
-                              <Font size="39.0" />
+                              <Font size="24.0" />
                            </font>
                         </Text>
-                        <Text fx:id="compBust" fill="RED" layoutX="386.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="268.13671875">
+                        <Text fx:id="compBust" fill="RED" layoutX="360.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="320.13671875">
                            <font>
-                              <Font size="39.0" />
+                              <Font size="24.0" />
                            </font>
                         </Text>
-                        <TextArea fx:id="turnInfo" editable="false" layoutX="281.0" layoutY="99.0" prefHeight="81.0" prefWidth="129.0" style="-fx-control-inner-background:#095407; -fx-font-family: Consolas; -fx-highlight-fill: #ffffff; -fx-highlight-text-fill: #000000; -fx-text-fill: #ffffff; " />
+                        <TextArea fx:id="turnInfo" editable="false" layoutX="693.0" layoutY="94.0" prefHeight="81.0" prefWidth="129.0" style="-fx-control-inner-background:#095407; -fx-font-family: Consolas; -fx-highlight-fill: #ffffff; -fx-highlight-text-fill: #000000; -fx-text-fill: #ffffff; " />
+                        <Text fx:id="winner" fill="#40ff00" layoutX="400.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="247.13671875">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="138.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player win count:" wrappingWidth="172.13671875">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="displayWinCounter" fill="WHITE" layoutX="255.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="62.0">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="138.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PC win count:" wrappingWidth="201.13671875">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="displayWinCounter2" fill="WHITE" layoutX="239.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="62.0">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
                      </children>
                   </AnchorPane>
             </content>

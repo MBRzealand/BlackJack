@@ -12,8 +12,12 @@ public class Controller extends DataLists{
 
     //-----------------------------------------------{ text fields }----------------------------------------------------
 
-//    @FXML
-//    private TextArea bugfixing;
+
+    @FXML
+    private Text winner;
+
+    @FXML
+    private Text displayWinCounter;
 
     @FXML
     private TextArea turnInfo;
@@ -23,6 +27,9 @@ public class Controller extends DataLists{
 
     @FXML
     private Text compBust;
+
+    @FXML
+    private Text displayWinCounter2;
 
     //----------------------------------------------{ card displays }---------------------------------------------------
 
@@ -72,6 +79,8 @@ public class Controller extends DataLists{
     public void initialize(){
 
         refillDeck();
+        displayWinCounter.setText("0");
+        displayWinCounter2.setText("0");
 
     }
 
@@ -93,11 +102,14 @@ public class Controller extends DataLists{
 
     void clearStoredData(){
 
-//        bugfixing.clear();
+        playerWon = false;
+        computerWon = false;
 
         enableButtons();
 
         turnInfo.setText(null);
+
+        winner.setText(null);
 
         hearts.clear();
         clubs.clear();
@@ -109,6 +121,8 @@ public class Controller extends DataLists{
         computerCards.clear();
         intPlayerCards.clear();
         intComputerCards.clear();
+        playerMoves.clear();
+        computerMoves.clear();
 
         counter = 0;
         AIcounter = 0;
@@ -152,12 +166,42 @@ public class Controller extends DataLists{
     void checkForBust(){
 
         if (computerScore > 21){
+            playerWon = true;
             compBust.setText("Computer Bust!");
             disableButtons();
         }
 
         if (playerScore > 21){
+            computerWon = true;
             playerBust.setText("Player Bust!");
+            disableButtons();
+        }
+
+    }
+
+    void checkForWin(){
+
+        if(playerMoves.get(playerMoves.size()-1).equals("Stand")
+        && (computerMoves.get(computerMoves.size()-1).equals("Stand") )){
+
+            if (playerScore >= computerScore){
+                playerWon = true;
+            }
+
+            if (computerScore > playerScore){
+                computerWon = true;
+            }
+
+        }
+
+
+        if(playerWon){
+            winner.setText("Player Won!");
+            disableButtons();
+        }
+
+        if(computerWon){
+            winner.setText("Computer Won!");
             disableButtons();
         }
 
@@ -175,6 +219,26 @@ public class Controller extends DataLists{
         playerStandButton.setDisable(false);
         playerHitButton.setVisible(true);
         playerStandButton.setVisible(true);
+    }
+
+    void updateWinCount(){
+
+        if (winner.getText().equals("Player Won!")){
+
+            playerWinCount += 1;
+
+            displayWinCounter.setText(Integer.toString(playerWinCount));
+
+        }
+
+        if (winner.getText().equals("Computer Won!")){
+
+            computerWinCount += 1;
+
+            displayWinCounter2.setText(Integer.toString(computerWinCount));
+
+        }
+
     }
 
     //----------------------------------------------{ Player Functions }------------------------------------------------
@@ -296,6 +360,38 @@ public class Controller extends DataLists{
 
     }
 
+    void computerHit() {
+
+        computerMoves.add("Hit");
+
+        computerTakesCardFromDeck();
+
+        displayComputerCard();
+
+        checkComputerScore();
+        checkPlayerScore();
+        checkForBust();
+        checkForWin();
+
+
+
+        turnInfo.appendText("Computer Hits!\n");
+
+    }
+
+    void computerStand() {
+
+        checkComputerScore();
+        checkPlayerScore();
+        checkForBust();
+        checkForWin();
+
+        computerMoves.add("Stand");
+
+        turnInfo.appendText("Computer Stands!\n");
+
+    }
+
     void checkComputerScore(){
 
         computerScore = 0;
@@ -323,12 +419,21 @@ public class Controller extends DataLists{
 
         checkPlayerScore();
         checkComputerScore();
+        checkForBust();
+        checkForWin();
 
-        if (computerScore >= 17) {
-            computerStand();
-        } else if ( ( (playerScore > computerScore) && (playerScore<=21) ) || computerScore < 17 ){
-            computerHit();
+        if(!playerWon && !computerWon) {
+            if (computerScore >= 17) {
+                computerStand();
+            } else if (((playerScore > computerScore) && (playerScore <= 21)) || (computerScore < 17)) {
+                computerHit();
+            }
         }
+
+        checkPlayerScore();
+        checkComputerScore();
+        checkForBust();
+        checkForWin();
 
     }
 
@@ -336,8 +441,8 @@ public class Controller extends DataLists{
 
 
     @FXML
-    void newGame(ActionEvent event) {
-
+    void newGame(ActionEvent event) {  // bugfixing
+        updateWinCount();
         clearStoredData();
         refillDeck();
 
@@ -346,11 +451,19 @@ public class Controller extends DataLists{
     @FXML
     void playerHit(ActionEvent event) {
 
-        playerTakesCardFromDeck();
+        playerMoves.add("Hit");
 
-        displayPlayerCard();
+        if (!playerWon && !computerWon) {
+
+            playerTakesCardFromDeck();
+
+            displayPlayerCard();
+        }
 
         checkPlayerScore();
+        checkComputerScore();
+        checkForBust();
+        checkForWin();
 
         think();
 
@@ -359,33 +472,19 @@ public class Controller extends DataLists{
     @FXML
     void playerStand(ActionEvent event) {
 
+        playerMoves.add("Stand");
+
         checkPlayerScore();
         checkComputerScore();
+        checkForBust();
+        checkForWin();
 
-        think();
-
-    }
-
-    void computerHit() {
-
-        computerTakesCardFromDeck();
-
-        displayComputerCard();
-
-        checkComputerScore();
-
-        turnInfo.appendText("Computer Hits!\n");
+        if (!playerWon && !computerWon) {
+            think();
+        }
 
     }
 
-    void computerStand() {
-
-        checkComputerScore();
-        checkPlayerScore();
-
-        turnInfo.appendText("Computer Stands!\n");
-
-    }
 
 
 

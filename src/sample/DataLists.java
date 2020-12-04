@@ -7,6 +7,14 @@ import java.util.Random;
 
 public class DataLists{
 
+
+    int playerWinCount = 0;
+    int computerWinCount = 0;
+
+
+    boolean playerWon = false;
+    boolean computerWon = false;
+
     Random rand = new Random();
     Image image;
 
@@ -40,6 +48,10 @@ public class DataLists{
 
     ArrayList<Integer> intPlayerCards = new ArrayList<>();
     ArrayList<Integer> intComputerCards = new ArrayList<>();
+
+    ArrayList<String> playerMoves = new ArrayList<>();
+    ArrayList<String> computerMoves = new ArrayList<>();
+
 
 
 }
