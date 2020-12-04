@@ -13,7 +13,7 @@ My knowledge of blackjack is somewhat limited, so expect the computer to do some
 - ~~Figure out the winner if both players stand on number below 21~~
 - Smarter computer opponent
 - ~~Add a win counter~~
-- Save current wins (persistece)
+- ~~Save current wins (persistece)~~
 - Make Ace value be both 11 and 1 (currently only 1)
 - Expand with functions like Split and Double
 
