@@ -10,7 +10,7 @@ My knowledge of blackjack is somewhat limited, so expect the computer to do some
 ### TODO
 
 - Make Standing permanent
-- Figure out the winner if both players stand on number below 21
+- ~~Figure out the winner if both players stand on number below 21~~
 - Smarter computer opponent
 - Add a win counter
 - Save current wins (persistece)
