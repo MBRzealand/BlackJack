@@ -7,6 +7,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import java.io.*;
 
 public class Controller extends DataLists{
 
@@ -74,7 +75,14 @@ public class Controller extends DataLists{
     @FXML
     private Button newGameButton;
 
+    @FXML
+    private Button loadButton;
+
+
     //--------------------------------------------{ Framework Functions }-----------------------------------------------
+
+    public Controller() throws FileNotFoundException {
+    }
 
     public void initialize(){
 
@@ -100,7 +108,7 @@ public class Controller extends DataLists{
 
     }
 
-    void clearStoredData(){
+    void clearStoredData() throws FileNotFoundException {
 
         playerWon = false;
         computerWon = false;
@@ -145,6 +153,7 @@ public class Controller extends DataLists{
         compBust.setText(null);
         playerBust.setText(null);
 
+        saveStringToFile();
     }
 
     void pickCard(){
@@ -219,6 +228,8 @@ public class Controller extends DataLists{
         playerStandButton.setDisable(false);
         playerHitButton.setVisible(true);
         playerStandButton.setVisible(true);
+        loadButton.setDisable(false);
+        loadButton.setVisible(true);
     }
 
     void updateWinCount(){
@@ -236,6 +247,16 @@ public class Controller extends DataLists{
             computerWinCount += 1;
 
             displayWinCounter2.setText(Integer.toString(computerWinCount));
+
+        }
+
+    }
+
+    void saveStringToFile() throws FileNotFoundException {
+
+        try (PrintStream out = new PrintStream(new FileOutputStream("currentScore.txt"))) {
+            out.print(displayWinCounter.getText()+"\n");
+            out.print(displayWinCounter2.getText()+"\n");
 
         }
 
@@ -441,7 +462,8 @@ public class Controller extends DataLists{
 
 
     @FXML
-    void newGame(ActionEvent event) {  // bugfixing
+    void newGame(ActionEvent event) throws FileNotFoundException {
+
         updateWinCount();
         clearStoredData();
         refillDeck();
@@ -485,12 +507,13 @@ public class Controller extends DataLists{
 
     }
 
-
-
-
-
-
-
+    @FXML
+    void loadScore(ActionEvent event) throws IOException {
+        displayWinCounter.setText(in.readLine());
+        displayWinCounter2.setText(in.readLine());
+        loadButton.setDisable(true);
+        loadButton.setVisible(false);
+    }
 
 
 }

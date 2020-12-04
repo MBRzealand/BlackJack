@@ -2,11 +2,15 @@ package sample;
 
 import javafx.scene.image.Image;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class DataLists{
 
+    BufferedReader in = new BufferedReader(new FileReader("currentScore.txt"));
 
     int playerWinCount = 0;
     int computerWinCount = 0;
@@ -53,5 +57,6 @@ public class DataLists{
     ArrayList<String> computerMoves = new ArrayList<>();
 
 
-
+    public DataLists() throws FileNotFoundException {
+    }
 }
